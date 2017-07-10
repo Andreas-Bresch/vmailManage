@@ -1,0 +1,34 @@
+{# app/Resources/views/listAccounts.html.twig #}
+{{ include('base.html.twig') }}
+
+<h1>List accounts</h1>
+
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Domain</th>
+        <!--<th>Password</th>-->
+        <th>Quota</th>
+        <th>Enabled</th>
+        <th>Sendonly</th>
+        <th>Action</th>
+
+    </tr>
+{% for item in accounts %}
+    <tr>
+        <td>{{ item.username }}</td>
+        <td>{{ item.domain }}</td>
+        <!--<td>{{ item.password }}</td>-->
+        <td>{{ item.quota }}</td>
+        <td>{% if item.enabled %} ja {% else %} nein {% endif %}</td>
+        <td>{% if item.sendonly %} ja {% else %} nein {% endif %}</td>
+        <td><a href="{{ item.id }}">bearbeiten</a> l&ouml;schen</td>
+    </tr>
+{% endfor %}
+    <tr>
+        <td colspan="5"></td>
+        <td><a href="new">neu</a></td>
+    </tr>
+</table>
+
+{{ include('base_bottom.html.twig') }}

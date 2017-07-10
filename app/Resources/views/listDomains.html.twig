@@ -1,0 +1,24 @@
+{# app/Resources/views/listDomains.html.twig #}
+{{ include('base.html.twig') }}
+
+<h1>List domains</h1>
+
+<table>
+    <tr>
+        <th>Domain</th>
+        <th>Action</th>
+
+    </tr>
+    {% for item in domains %}
+        <tr>
+            <td>{{ item.domain }}</td>
+            <td><a href="{{ item.domain }}">bearbeiten</a> l&ouml;schen</td>
+        </tr>
+    {% endfor %}
+    <tr>
+        <td></td>
+        <td><a href="new">neu</a></td>
+    </tr>
+</table>
+
+{{ include('base_bottom.html.twig') }}

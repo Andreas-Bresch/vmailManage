@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Manage mailconf!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <!-- <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" /> -->
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+        User: login/logout |
+        <a href="/domain/">domain</a> | <a href="/account/">account</a> | <a href="/alias/">alias</a>

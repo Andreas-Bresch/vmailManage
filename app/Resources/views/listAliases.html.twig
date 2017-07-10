@@ -1,0 +1,32 @@
+{# app/Resources/views/listAliases.html.twig #}
+{{ include('base.html.twig') }}
+
+<h1>List aliases</h1>
+
+<table>
+    <tr>
+        <th>Sourceusername</th>
+        <th>Sourcedomain</th>
+        <th>Destinationusername</th>
+        <th>Destinationdomain</th>
+        <th>Enabled</th>
+        <th>Action</th>
+
+    </tr>
+    {% for item in aliases %}
+        <tr>
+            <td>{{ item.source_username }}</td>
+            <td>{{ item.source_domain }}</td>
+            <td>{{ item.destination_username }}</td>
+            <td>{{ item.destination_domain }}</td>
+            <td>{{ item.enabled }}</td>
+            <td><a href="{{ item.id }}">bearbeiten</a> l&ouml;schen</td>
+        </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="5"></td>
+        <td><a href="new">neu</a></td>
+    </tr>
+</table>
+
+{{ include('base_bottom.html.twig') }}
