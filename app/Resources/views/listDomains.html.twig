@@ -15,7 +15,7 @@
     {% for item in domains %}
         <tr>
             <td>{{ item.domain }}</td>
-            <td><a href="{{ item.domain }}">edit</a> delete</td>
+            <td><a href="{{ item.id }}">edit</a> <a href="delete/{{ item.id }}">delete</a></td>
         </tr>
     {% endfor %}
     </tbody>

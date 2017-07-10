@@ -27,21 +27,32 @@ class EditDomainController extends Controller
     }
 
     /**
-     * Route("/domain/{id}", name="edit_domain", requirements={"id": "\d+"})
-     * @Route("/domain/{domainname}", name="edit_domain")
+     * @Route("/domain/{id}", name="edit_domain", requirements={"id": "\d+"})
      */
-    public function editAction($domainname, Request $request)
+    public function editAction($id, Request $request)
     {
         $domain = $this->getDoctrine()
             ->getRepository('AppBundle:Domain')
-            ->find($domainname);
+            ->findOneBy(array('id' => $id));
         if (!$domain) {
             return $this->redirectToRoute('list_domains');
         }
         return $this->handleForm($domain, $request);
     }
 
-
+    /**
+     * @Route("/domain/delete/{id}", name="edit_domain", requirements={"id": "\d+"})
+     */
+    public function deleteAction($id, Request $request)
+    {
+        $domain = $this->getDoctrine()
+            ->getRepository('AppBundle:Domain')
+            ->findOneBy(array('id' => $id));
+        if (!$domain) {
+            return $this->redirectToRoute('list_domains');
+        }
+        return $this->handleForm($domain, $request);
+    }
 
 
 
