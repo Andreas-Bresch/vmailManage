@@ -20,5 +20,130 @@ h1, h2, h3, h4, h5, h6
 }
 h1, h2, h3
 {
-    font-size: 18px;
+    font-size: 20px;
 }
+
+a, a:link, a:active, a:visited, a:hover
+{
+    color: inherit;
+    text-decoration: underline;
+}
+
+.header,
+.footer
+{
+    background: #0823e9;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    line-height: 30px;
+
+
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 30px;
+    padding: 0 20px;
+}
+
+
+
+table {
+    border-collapse: collapse;
+// border: 1px solid;
+    border: none;
+    margin: 2em;
+//border-color: #0823e9;
+}
+
+tr {
+// border-top: 1px solid;
+// border-bottom: 1px solid;
+//border-color: #0823e9;
+    line-height: 1em;
+}
+
+tr:first-child {
+    border-top: 0 none;
+}
+
+th, td {
+    padding: 0.3em;
+}
+
+thead tr {
+    background-color: #ddffd9;
+}
+
+tr:nth-child(even) {
+    background-color: #fffae4;
+}
+
+th {
+    font-size: 1.1em;
+}
+
+tfoot tr {
+    background-color: #ddffd9;
+    font-size: 1.0em;
+    text-align: right;
+}
+
+td {
+    font-size: 0.9em;
+}
+
+tbody th {
+    text-align: left;
+}
+
+
+/*
+td:nth-child(3) {
+    text-align: left;
+    font-weight: bold;
+}
+td:nth-child(4) {
+    text-align: left;
+}
+td:nth-child(5) {
+    text-align: right;
+}
+td:nth-child(6) {
+    white-space: nowrap;
+}
+*/
+
+form {
+    width: 25em;
+    margin: 2em;
+}
+
+label {
+    float: left;
+    width: 12em;
+}
+input, select, button {
+    margin: 0 0 1em .2em;
+    padding: .2em .5em;
+    background-color: #fffae4;
+    border: 1px solid #efead4;
+    float: left;
+    width:15em;
+
+    box-sizing:content-box;
+    -webkit-box-sizing:content-box;
+}
+button {
+    margin-top: 1.5em;
+    width: 10em;
+    background-color: #fffae4;
+    float: right;
+
+    box-sizing:content-box;
+    -webkit-box-sizing:content-box;
+}
+
+
+
+

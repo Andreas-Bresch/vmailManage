@@ -4,21 +4,27 @@
 <h1>List domains</h1>
 
 <table>
+    <thead>
     <tr>
         <th>Domain</th>
         <th>Action</th>
 
     </tr>
+    </thead>
+    <tbody>
     {% for item in domains %}
         <tr>
             <td>{{ item.domain }}</td>
-            <td><a href="{{ item.domain }}">bearbeiten</a> l&ouml;schen</td>
+            <td><a href="{{ item.domain }}">edit</a> delete</td>
         </tr>
     {% endfor %}
+    </tbody>
+    <tfoot>
     <tr>
         <td></td>
-        <td><a href="new">neu</a></td>
+        <td><a href="new">+ new</a></td>
     </tr>
+    </tfoot>
 </table>
 
 {{ include('base_bottom.html.twig') }}

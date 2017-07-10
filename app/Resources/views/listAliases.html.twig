@@ -4,29 +4,35 @@
 <h1>List aliases</h1>
 
 <table>
+    <thead>
     <tr>
-        <th>Sourceusername</th>
-        <th>Sourcedomain</th>
-        <th>Destinationusername</th>
-        <th>Destinationdomain</th>
+        <th colspan="3">Source</th>
+        <th colspan="3">Destination</th>
         <th>Enabled</th>
         <th>Action</th>
 
     </tr>
+    </thead>
+    <tbody>
     {% for item in aliases %}
         <tr>
             <td>{{ item.source_username }}</td>
+            <td>@</td>
             <td>{{ item.source_domain }}</td>
             <td>{{ item.destination_username }}</td>
+            <td>@</td>
             <td>{{ item.destination_domain }}</td>
-            <td>{{ item.enabled }}</td>
-            <td><a href="{{ item.id }}">bearbeiten</a> l&ouml;schen</td>
+            <td>{% if item.enabled %} yes {% else %} no {% endif %}</td>
+            <td><a href="{{ item.id }}">edit</a> delete</td>
         </tr>
     {% endfor %}
+    </tbody>
+    <tfoot>
     <tr>
-        <td colspan="5"></td>
-        <td><a href="new">neu</a></td>
+        <td colspan="7"></td>
+        <td><a href="new">+ new</a></td>
     </tr>
+    </tfoot>
 </table>
 
 {{ include('base_bottom.html.twig') }}

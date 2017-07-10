@@ -4,6 +4,7 @@
 <h1>List accounts</h1>
 
 <table>
+    <thead>
     <tr>
         <th>Username</th>
         <th>Domain</th>
@@ -14,21 +15,26 @@
         <th>Action</th>
 
     </tr>
+    </thead>
+    <tbody>
 {% for item in accounts %}
     <tr>
         <td>{{ item.username }}</td>
         <td>{{ item.domain }}</td>
         <!--<td>{{ item.password }}</td>-->
         <td>{{ item.quota }}</td>
-        <td>{% if item.enabled %} ja {% else %} nein {% endif %}</td>
-        <td>{% if item.sendonly %} ja {% else %} nein {% endif %}</td>
-        <td><a href="{{ item.id }}">bearbeiten</a> l&ouml;schen</td>
+        <td>{% if item.enabled %} yes {% else %} no {% endif %}</td>
+        <td>{% if item.sendonly %} yes {% else %} no {% endif %}</td>
+        <td><a href="{{ item.id }}">edit</a> delete</td>
     </tr>
 {% endfor %}
+    </tbody>
+    <tfoot>
     <tr>
         <td colspan="5"></td>
-        <td><a href="new">neu</a></td>
+        <td><a href="new">+ new</a></td>
     </tr>
+    </tfoot>
 </table>
 
 {{ include('base_bottom.html.twig') }}
