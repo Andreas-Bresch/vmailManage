@@ -15,6 +15,7 @@
     </tr>
     </thead>
     <tbody>
+    {% set showNote = false %}
     {% for item in domains %}
         <tr>
             <td>{{ item.domain }}</td>
@@ -23,6 +24,7 @@
                     <a href="{{ item.id }}">edit</a>
                     <a href="#" onclick="confirmAction('{{ item.domain }}', 'delete/{{ item.id }}');">delete</a>
                 {% else %}
+                    {% set showNote = true %}
                     *
                 {% endif %}
             </td>
@@ -37,5 +39,7 @@
     </tfoot>
 </table>
 
-<p>*You can only edit or delete a domain, if there are no accounts or aliases referenced to it.</p>
+{% if showNote %}
+    <p>*You can only edit or delete a domain, if there are no accounts or aliases referenced to it.</p>
+{% endif %}
 {{ include('base_bottom.html.twig') }}
