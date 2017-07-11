@@ -10,7 +10,12 @@
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+
         <div class="header">
-        User: login/logout |
-        <a href="/domain/">domain</a> | <a href="/account/">account</a> | <a href="/alias/">alias</a>
+            <div class="header_menu">
+                <a href="/domain/">domain</a> | <a href="/account/">account</a> | <a href="/alias/">alias</a>
+            </div>
+            <div class="header_logon">
+                User: login/logout
+            </div>
         </div>

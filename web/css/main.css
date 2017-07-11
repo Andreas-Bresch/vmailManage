@@ -29,8 +29,7 @@ a, a:link, a:active, a:visited, a:hover
     text-decoration: underline;
 }
 
-.header,
-.footer
+.header
 {
     background: #0823e9;
     font-size: 14px;
@@ -38,12 +37,20 @@ a, a:link, a:active, a:visited, a:hover
     color: #fff;
     line-height: 30px;
 
-
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
     height: 30px;
     padding: 0 20px;
+}
+.header_menu
+{
+    text-align:left;
+    float:left;
+}
+.header_logon
+{
+    text-align:right;
 }
 
 
