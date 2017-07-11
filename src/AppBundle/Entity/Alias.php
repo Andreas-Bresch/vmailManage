@@ -34,7 +34,7 @@ class Alias
 
     /**
      * @Assert\NotBlank()
-     * @ORM\ManyToOne(targetEntity="Domain")
+     * @ORM\ManyToOne(targetEntity="Domain", inversedBy="aliases")
      * @ORM\JoinColumn(name="source_domain", referencedColumnName="domain")
      */
     private $source_domain;
