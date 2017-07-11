@@ -22,7 +22,7 @@ class DomainType extends AbstractType
     {
         $builder
             ->add('domain', TextType::class)
-            ->add('save', SubmitType::class, array('label' => 'Speichern'))
+            ->add('save', SubmitType::class, array('label' => 'submit'))
         ;
     }
 

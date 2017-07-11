@@ -40,7 +40,7 @@ class AccountType extends AbstractType
             ->add('quota', IntegerType::class)
             ->add('enabled', CheckboxType::class)
             ->add('sendonly', CheckboxType::class)
-            ->add('save', SubmitType::class, array('label' => 'Speichern'))
+            ->add('save', SubmitType::class, array('label' => 'submit'))
         ;
     }
 
