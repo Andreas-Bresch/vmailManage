@@ -8,6 +8,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\DomainNewItem;
+use AppBundle\Entity\DomainEditItem;
 use AppBundle\Form\DomainType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,8 +24,9 @@ class EditDomainController extends Controller
      */
     public function newAction(Request $request)
     {
-        $domain = new Domain();
-        return $this->handleForm($domain, $request);
+        // workaround because of unsupported database-structure (foreign key is not primary key)
+        $domain = new DomainNewItem();
+        return $this->handleFormNewItem($domain, $request);
     }
 
     /**
@@ -31,17 +34,19 @@ class EditDomainController extends Controller
      */
     public function editAction($id, Request $request)
     {
+        // workaround because of unsupported database-structure (foreign key is not primary key)
         $domain = $this->getDoctrine()
-            ->getRepository('AppBundle:Domain')
-            ->findOneBy(array('id' => $id));
+            ->getRepository('AppBundle:DomainEditItem')
+            ->find(array('id' => $id));
+           // ->findOneBy(array('id' => $id));
         if (!$domain) {
             return $this->redirectToRoute('list_domains');
         }
-        return $this->handleForm($domain, $request);
+        return $this->handleFormEditItem($domain, $request);
     }
 
     /**
-     * @Route("/domain/delete/{id}", name="edit_domain", requirements={"id": "\d+"})
+     * @Route("/domain/delete/{id}", name="delete_domain", requirements={"id": "\d+"})
      */
     public function deleteAction($id, Request $request)
     {
@@ -51,7 +56,14 @@ class EditDomainController extends Controller
         if (!$domain) {
             return $this->redirectToRoute('list_domains');
         }
-        return $this->handleForm($domain, $request);
+
+        // delete:
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($domain);
+        $em->flush();
+
+        return $this->redirectToRoute('list_domains');
+
     }
 
 
@@ -67,9 +79,53 @@ class EditDomainController extends Controller
         if ($form->isSubmitted() && $form->isValid()) { // save the data:
             $domain = $form->getData();
             $em = $this->getDoctrine()->getManager();
-            // tells Doctrine you want to (eventually) save the Product (no queries yet)
             $em->persist($domain);
-            // actually executes the queries (i.e. the INSERT query)
+            $em->flush();
+            return $this->redirectToRoute('list_domains');
+        }
+        // show the form (again):
+        return $this->render('editDomain.html.twig', array('form' => $form->createView()));
+    }
+
+
+    /**
+     *
+     * workaround because of unsupported database-structure (foreign key is not primary key)
+     *
+     * @param DomainNewItem $domain
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    function handleFormEditItem(DomainEditItem $domain, Request $request) {
+        $form = $this->createForm(DomainType::class, $domain);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) { // save the data:
+            $domain = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($domain);
+            $em->flush();
+            return $this->redirectToRoute('list_domains');
+        }
+        // show the form (again):
+        return $this->render('editDomain.html.twig', array('form' => $form->createView()));
+    }
+
+
+    /**
+     *
+     * workaround because of unsupported database-structure (foreign key is not primary key)
+     *
+     * @param DomainNewItem $domain
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    function handleFormNewItem(DomainNewItem $domain, Request $request) {
+        $form = $this->createForm(DomainType::class, $domain);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) { // save the data:
+            $domain = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($domain);
             $em->flush();
             return $this->redirectToRoute('list_domains');
         }

@@ -17,22 +17,21 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity
  * @ORM\Table(name="domains")
  */
-class Domain
+class DomainNewItem
 {
 
     /**
      * workaround because of unsupported database-structure (foreign key not primary key)
      *
-     * @ORM\Column(type="integer")
+     * ORM\Column(type="integer")
      * ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
 
 
     /**
-     *
      * workaround because of unsupported database-structure (foreign key not primary key)
      *
      * @Assert\NotBlank()

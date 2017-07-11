@@ -17,14 +17,14 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity
  * @ORM\Table(name="domains")
  */
-class Domain
+class DomainEditItem
 {
 
     /**
      * workaround because of unsupported database-structure (foreign key not primary key)
      *
      * @ORM\Column(type="integer")
-     * ORM\Id
+     * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
@@ -37,7 +37,7 @@ class Domain
      *
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255, unique=true)
-     * @ORM\Id
+     * ORM\Id
      */
     private $domain;
 

@@ -1,6 +1,17 @@
 {# app/Resources/views/listDomains.html.twig #}
 {{ include('base.html.twig') }}
 
+<script type="text/javascript">
+
+    function confirmAction($item, $actionUrl) {
+        if (confirm('Are you sure you want to delete ' + $item + '?')) {
+            window.location.href = $actionUrl;
+        } else {
+            // Do nothing!
+        }
+    }
+</script>
+
 <h1>List domains</h1>
 
 <table>
@@ -15,7 +26,8 @@
     {% for item in domains %}
         <tr>
             <td>{{ item.domain }}</td>
-            <td><a href="{{ item.id }}">edit</a> <a href="delete/{{ item.id }}">delete</a></td>
+            <td><a href="{{ item.id }}">edit</a>
+                <a href="#" onclick="confirmAction('{{ item.domain }}', 'delete/{{ item.id }}');">delete</a></td>
         </tr>
     {% endfor %}
     </tbody>
