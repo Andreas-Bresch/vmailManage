@@ -40,6 +40,28 @@ class EditAliasController extends Controller
         return $this->handleForm($alias, $request);
     }
 
+
+    /**
+     * @Route("/alias/delete/{id}", name="delete_alias", requirements={"id": "\d+"})
+     */
+    public function deleteAction($id, Request $request)
+    {
+        $alias = $this->getDoctrine()
+            ->getRepository('AppBundle:Alias')
+            ->find($id);
+        if (!$alias) {
+            return $this->redirectToRoute('list_aliases');
+        }
+        // delete:
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($alias);
+        $em->flush();
+
+        return $this->redirectToRoute('list_aliases');
+    }
+
+
+
     /**
      * @param Alias $alias
      * @param Request $request

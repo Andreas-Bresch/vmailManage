@@ -1,6 +1,8 @@
 {# app/Resources/views/listAccounts.html.twig #}
 {{ include('base.html.twig') }}
 
+<script src="{{ asset('js/main.js') }}"></script>
+
 <h1>List accounts</h1>
 
 <table>
@@ -25,7 +27,10 @@
         <td>{{ item.quota }}</td>
         <td>{% if item.enabled %} yes {% else %} no {% endif %}</td>
         <td>{% if item.sendonly %} yes {% else %} no {% endif %}</td>
-        <td><a href="{{ item.id }}">edit</a> delete</td>
+        <td>
+            <a href="{{ item.id }}">edit</a>
+            <a href="#" onclick="confirmAction('{{ item.username }}', 'delete/{{ item.id }}');">delete</a>
+        </td>
     </tr>
 {% endfor %}
     </tbody>

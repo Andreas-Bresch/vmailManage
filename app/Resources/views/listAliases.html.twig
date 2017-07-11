@@ -1,6 +1,9 @@
 {# app/Resources/views/listAliases.html.twig #}
 {{ include('base.html.twig') }}
 
+<script src="{{ asset('js/main.js') }}"></script>
+
+
 <h1>List aliases</h1>
 
 <table>
@@ -23,7 +26,10 @@
             <td>@</td>
             <td>{{ item.destination_domain }}</td>
             <td>{% if item.enabled %} yes {% else %} no {% endif %}</td>
-            <td><a href="{{ item.id }}">edit</a> delete</td>
+            <td>
+                <a href="{{ item.id }}">edit</a>
+                <a href="#" onclick="confirmAction('{{ item.source_username }}@{{ item.source_domain }}', 'delete/{{ item.id }}');">delete</a>
+            </td>
         </tr>
     {% endfor %}
     </tbody>

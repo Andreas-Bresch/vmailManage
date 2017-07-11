@@ -42,15 +42,20 @@ class Domain
     private $domain;
 
 
-    /** ToDo: wird das benoetigt?
+    /**
      * @ORM\OneToMany(targetEntity="Account", mappedBy="domain")
      */
     private $accounts;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Alias", mappedBy="source_domain")
+     */
+    private $aliases;
 
     public function __construct()
     {
         $this->accounts = new ArrayCollection();
+        $this->aliases = new ArrayCollection();
     }
 
 
@@ -102,6 +107,24 @@ class Domain
     {
         $this->accounts = $accounts;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAliases()
+    {
+        return $this->aliases;
+    }
+
+    /**
+     * @param mixed $aliases
+     */
+    public function setAliases($aliases)
+    {
+        $this->aliases = $aliases;
+    }
+
+
 
     /**
      * ToDo: Schlechte Loesung! Aber sonst klappt das Speichern des Accounts nicht.

@@ -44,6 +44,26 @@ class editAccountController extends Controller
     }
 
     /**
+     * @Route("/account/delete/{id}", name="delete_account", requirements={"id": "\d+"})
+     */
+    public function deleteAction($id, Request $request)
+    {
+        $account = $this->getDoctrine()
+            ->getRepository('AppBundle:Account')
+            ->find($id);
+        if (!$account) {
+            return $this->redirectToRoute('list_accounts');
+        }
+
+        // delete:
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($account);
+        $em->flush();
+
+        return $this->redirectToRoute('list_accounts');
+    }
+
+    /**
      * @param Account $account
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
