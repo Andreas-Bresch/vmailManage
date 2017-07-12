@@ -63,6 +63,7 @@ class Account
 
     public function __construct()
     {
+        $this->quota = 2048;
     }
 
     /**
@@ -147,6 +148,10 @@ class Account
      */
     public function setPassword($password)
     {
+        if (!preg_match('/^{SHA512-CRYPT}*/', $password)) {
+            $salt = substr(sha1(rand()), 0, 16);
+            $password = "{SHA512-CRYPT}" . crypt($password, "$6$$salt");
+        }
         $this->password = $password;
     }
 
