@@ -38,7 +38,6 @@ class EditDomainController extends Controller
         $domain = $this->getDoctrine()
             ->getRepository('AppBundle:DomainEditItem')
             ->find(array('id' => $id));
-           // ->findOneBy(array('id' => $id));
         if (!$domain) {
             return $this->redirectToRoute('list_domains');
         }
