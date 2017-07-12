@@ -26,6 +26,7 @@ class ListDomainsController extends Controller
         $domains = $this->getDoctrine()
             ->getRepository('AppBundle:Domain')
             ->findAll();
+
         return $this->render('listDomains.html.twig', array('domains' => $domains));
     }
 
