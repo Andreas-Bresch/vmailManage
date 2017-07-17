@@ -12,8 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class EditDomainControllerTest extends WebTestCase
 {
-    private $editLink = false;
-    private $id = false;
+    private $editLink = false; // link to edit the new testdomain
+    private $id = false; // id of the new testdomain
     private $testdomain = 'test0815.com';
     private $preTestdomain = 'edited-';
 
