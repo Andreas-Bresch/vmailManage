@@ -17,23 +17,33 @@ class EditDomainControllerTest extends WebTestCase
     private $testdomain = 'test0815.com';
     private $preTestdomain = 'edited-';
 
+    private $client = null;
+
+    public function setUp()
+    {
+        $this->client = static::createClient(array(), array(
+            'PHP_AUTH_USER' => 'andy',
+            'PHP_AUTH_PW'   => 'andy123',
+        ));
+    }
+
+
     public function testNewEditDelete()
     {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/domain/new');
+        $crawler = $this->client->request('GET', '/domain/new');
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertContains('Edit domain', $crawler->filter('h1')->text());
 
         /* create new testdomain: */
         echo 'new '.$this->testdomain."\n";
         $form = $crawler->selectButton('submit')->form();
         $form['domain[domain]'] = $this->testdomain;
-        $crawler = $client->submit($form);
-        $this->assertEquals(302, $client->getResponse()->getStatusCode()); // redirection
+        $crawler = $this->client->submit($form);
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode()); // redirection
 
         /* search testdomain in domainlist */
-        $crawler = $client->request('GET', '/domain/');
+        $crawler = $this->client->request('GET', '/domain/');
         $this->assertContains($this->testdomain, $crawler->filter('table')->text());
         // read tds of table in an array:
         $rows = $crawler->filter('table')
@@ -54,19 +64,19 @@ class EditDomainControllerTest extends WebTestCase
 
         /* edit testdomain: */
         echo 'edit '.$this->testdomain." to ".$this->preTestdomain.$this->testdomain."\n";
-        $crawler = $client->click($this->editLink);
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $crawler = $this->client->click($this->editLink);
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $form = $crawler->selectButton('submit')->form();
         $form->get('domain[domain]')->setValue($this->preTestdomain.$form->get('domain[domain]')->getValue());
-        $crawler = $client->submit($form);
-        $this->assertEquals(302, $client->getResponse()->getStatusCode()); // redirection
-        $crawler = $client->request('GET', '/domain/');
+        $crawler = $this->client->submit($form);
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode()); // redirection
+        $crawler = $this->client->request('GET', '/domain/');
         $this->assertContains($this->preTestdomain.$this->testdomain, $crawler->filter('table')->text());
 
         /* remove testdomain: */
         echo 'delete '.$this->preTestdomain.$this->testdomain."\n";
-        $crawler = $client->request('GET', '/domain/delete/'.$this->id);
-        $this->assertEquals(302, $client->getResponse()->getStatusCode()); // redirection
+        $crawler = $this->client->request('GET', '/domain/delete/'.$this->id);
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode()); // redirection
     }
 
 }

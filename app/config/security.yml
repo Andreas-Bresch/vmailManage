@@ -5,7 +5,22 @@ security:
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         in_memory:
-            memory: ~
+            #memory: ~
+            memory:
+                            users:
+                                andy:
+                                    password: andy123
+                                    roles: 'ROLE_ADMIN'
+                                #admin:
+                                #    password: kitten
+                                #    roles: 'ROLE_ADMIN'
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+
+        #Symfony\Component\Security\Core\User\User:
+        #  algorithm: bcrypt
+        #  cost: 12
+        ## to crate a bcrypted password use: php bin/console security:encode-password
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -20,5 +35,18 @@ security:
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
             #http_basic: ~
 
-            # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
+            form_login:
+              login_path: login
+              check_path: login
+
+
+            logout:
+              path:   /logout
+              target: /
+
+
+    access_control:
+        # require ROLE_ADMIN for /admin*
+        - { path: ^/domain, roles: ROLE_ADMIN }
+        - { path: ^/account, roles: ROLE_ADMIN }
+        - { path: ^/alias, roles: ROLE_ADMIN }

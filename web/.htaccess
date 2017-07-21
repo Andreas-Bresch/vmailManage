@@ -1,7 +1,3 @@
-AuthType Basic
-AuthName "Password Protected Area"
-AuthUserFile /etc/apache2/.htpasswd
-Require valid-user
 
 # Use the front controller as index file. It serves as a fallback solution when
 # every other rewrite/redirect fails (e.g. in an aliased environment without

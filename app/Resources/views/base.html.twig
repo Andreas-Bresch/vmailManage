@@ -17,9 +17,9 @@
                 <a href="{{ asset('account') }}">account</a> |
                 <a href="{{ asset('alias') }}">alias</a>
             </div>
-            <!--
             <div class="header_logon">
-                User: login
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a href="{{ asset('logout') }}">logout</a>
+                {% endif %}
             </div>
-            -->
         </div>

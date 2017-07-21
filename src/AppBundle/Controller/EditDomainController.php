@@ -83,7 +83,9 @@ class EditDomainController extends Controller
             return $this->redirectToRoute('list_domains');
         }
         // show the form (again):
-        return $this->render('editDomain.html.twig', array('form' => $form->createView()));
+        $session = $request->getSession();
+        return $this->render('editDomain.html.twig', array(
+            'form' => $form->createView()));
     }
 
 
@@ -106,7 +108,8 @@ class EditDomainController extends Controller
             return $this->redirectToRoute('list_domains');
         }
         // show the form (again):
-        return $this->render('editDomain.html.twig', array('form' => $form->createView()));
+        return $this->render('editDomain.html.twig', array(
+            'form' => $form->createView()));
     }
 
 
@@ -129,7 +132,8 @@ class EditDomainController extends Controller
             return $this->redirectToRoute('list_domains');
         }
         // show the form (again):
-        return $this->render('editDomain.html.twig', array('form' => $form->createView()));
+        return $this->render('editDomain.html.twig', array(
+            'form' => $form->createView()));
     }
 
 }

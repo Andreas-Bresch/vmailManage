@@ -12,25 +12,32 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ListDomainsControllerTest extends WebTestCase
 {
+
+    private $client = null;
+
+    public function setUp()
+    {
+        $this->client = static::createClient(array(), array(
+            'PHP_AUTH_USER' => 'andy',
+            'PHP_AUTH_PW'   => 'andy123',
+        ));
+    }
+
+
     public function testIndex()
     {
-        $client = static::createClient();
-
-        $crawler = $client->request('GET', '/domain/');
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $crawler = $this->client->request('GET', '/domain/');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertContains('List domains', $crawler->filter('h1')->text());
     }
 
     public function testLink() {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/domain/');
+        $crawler = $this->client->request('GET', '/domain/');
         $link = $crawler
             ->filter('a:contains("new")') // find all links with the text "new"
             ->eq(0) // select the 1st link in the list
             ->link();
-
-        $crawler = $client->click($link);
+        $crawler = $this->client->click($link);
         $this->assertContains('Edit domain', $crawler->filter('h1')->text());
     }
 }
