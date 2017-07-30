@@ -46,7 +46,7 @@ security:
 
 
     access_control:
-        # require ROLE_ADMIN for /admin*
+        # require ROLE_ADMIN for some subpages
         - { path: ^/domain, roles: ROLE_ADMIN }
         - { path: ^/account, roles: ROLE_ADMIN }
         - { path: ^/alias, roles: ROLE_ADMIN }
