@@ -1,0 +1,68 @@
+.page form > div {
+  columns: 2 370px;
+}
+
+.page form > div > div {
+  display:        flex;
+  flex-direction: column;
+  break-inside:   avoid;
+}
+
+.page form > div > div + div {
+  margin-top: var(--spacing-base);
+}
+
+.page form > div > div:last-of-type {
+  column-span: all;
+  align-items: center;
+}
+
+label {
+  padding:   calc(var(--spacing-small) / 2) var(--spacing-small);
+  width:     100%;
+  font-size: var(--font-size-small);
+  color:     var(--color-primary-dark-contrast)
+}
+
+input,
+select {
+  width:            100%;
+  margin:           0;
+  padding:          var(--spacing-small) var(--spacing-base);
+  border:           none;
+  border-bottom:    1px solid var(--color-primary-dark-contrast);
+  background-color: var(--color-page);
+  transition:       all 0.125s;
+  outline:          none;
+}
+
+input:focus,
+select:focus {
+  border-bottom-color: var(--color-primary);
+  box-shadow:          0 2px 0 -1px var(--color-primary),
+                       1px 2px 0 -1px var(--color-primary),
+                       -1px 2px 0 -1px var(--color-primary);
+}
+
+button {
+  display:          inline-block;
+  padding:          var(--spacing-small) var(--spacing-base);
+  border:           0;
+  border-radius:    2px;
+  font-weight:      500;
+  text-transform:   uppercase;
+  transition:       all 0.125s;
+  user-select:      none;
+  background-color: var(--color-primary);
+  color:            var(--color-primary-contrast);
+  box-shadow:       0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                    0 1px 5px 0 rgba(0, 0, 0, 0.12),
+                    0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  cursor:           pointer;
+}
+
+button:hover {
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14),
+              0 1px 7px 0 rgba(0, 0, 0, 0.12),
+              0 3px 5px -1px rgba(0, 0, 0, 0.2);
+}

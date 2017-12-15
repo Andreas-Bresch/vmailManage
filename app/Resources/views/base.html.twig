@@ -1,25 +1,31 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}vmailManage - manage your email server{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <!-- <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" /> -->
-        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-
-        <div class="header">
-            <div class="header_menu">
-                <a href="{{ asset('domain') }}">domain</a> |
-                <a href="{{ asset('account') }}">account</a> |
-                <a href="{{ asset('alias') }}">alias</a>
-            </div>
-            <div class="header_logon">
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <a href="{{ asset('logout') }}">logout</a>
-                {% endif %}
-            </div>
-        </div>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}vmailManage{% endblock %}</title>
+  {% block stylesheets %}{% endblock %}
+  <!-- <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" /> -->
+  <link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
+</head>
+<body>
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+<header class="header">
+  <div class="header_menu">
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+      <a href="{{ asset('domain') }}" class="{{ app.request.requestUri == asset('domain') ~ '/' ? 'active' }}">domain</a>
+      <a href="{{ asset('account') }}" class="{{ app.request.requestUri == asset('account') ~ '/' ? 'active' }}">account</a>
+      <a href="{{ asset('alias') }}" class="{{ app.request.requestUri == asset('alias') ~ '/' ? 'active' }}">alias</a>
+      <a href="/rspamd" target="_blank">spam</a>
+    {% endif %}
+  </div>
+  <div class="header_logon">
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+      <a href="{{ asset('logout') }}">logout</a>
+    {% else %}
+      <a href="{{ asset('login') }}">login</a>
+    {% endif %}
+  </div>
+</header>
+<div class="container">
