@@ -1,4 +1,4 @@
-{% from 'macros/table.twig' import table, action, dangerousAction, primaryAction %}
+{% from 'macros/table.twig' import table, editAction, dangerousDeleteAction, primaryAddAction %}
 {{ include('base.html.twig') }}
 <article class="page page-list-aliases">
   <header>
@@ -7,18 +7,17 @@
   </header>
 
   {% set aliasList = [] %}
-
   {% for alias in aliases %}
     {% set aliasList = aliasList | merge( [ [
-    alias.source_username ~ '@' ~ alias.source_domain,
-    alias.destination_username ~ '@' ~ alias.destination_domain,
-    alias.enabled ? 'yes' : 'no',
-    action('Edit', '/alias/' ~ alias.id) ~ dangerousAction('Delete', '/alias/delete/' ~ alias.id, [ 'delete' ] )
+      alias.source_username ~ '@' ~ alias.source_domain,
+      alias.destination_username ~ '@' ~ alias.destination_domain,
+      alias.enabled ? 'yes' : 'no',
+      editAction('Edit', '/alias/' ~ alias.id) ~ dangerousDeleteAction('Delete', '/alias/delete/' ~ alias.id, [ 'delete' ] )
     ] ] ) %}
   {% endfor %}
 
   {{ table( [ 'Alias', 'Account', 'Enabled', 'Action' ], aliasList, [
-    primaryAction( 'New Alias', '/alias/new' )
+    primaryAddAction( 'New Alias', '/alias/new' )
   ] ) }}
 </article>
 {{ include('base_bottom.html.twig') }}

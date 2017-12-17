@@ -1,5 +1,6 @@
 @import url("/css/variables.css");
 @import url("/css/header.css");
+@import url("/css/footer.css");
 @import url("/css/tables.css");
 @import url("/css/actions.css");
 @import url("/css/pages.css");
@@ -26,7 +27,12 @@ body {
   -webkit-text-size-adjust: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   line-height: 1;
   font-weight: 400;
   margin:      20px 0 10px 0;
@@ -42,24 +48,37 @@ h2 {
 }
 
 h3 {
-  font-size: calc(var(--font-size-big) * 0.8)
+  font-size: calc(var(--font-size-big) * 0.8);
 }
 
 a {
   color:           inherit;
-  text-decoration: underline;
+  text-decoration: none;
   transition:      all 0.125s;
+  padding-bottom:  1px;
+  border-bottom:   1px dashed rgba(0, 0, 0, 0.1);
 }
 
 a:hover {
-  color: var(--color-primary)
+  color: var(--color-primary);
+
 }
 
+/**
+ * The general maximum content width amounts to 920px, a completely arbitrary value.
+ * This works by padding the header, content and footer by half of the page minus 920px / 2.
+ */
+.header,
 .container,
-.header {
-  padding: 0.5rem calc(50% - 410px);
+.footer {
+  padding-left:  calc(50% - 410px);
+  padding-right: calc(50% - 410px);
 }
 
+/**
+ * On screens lower than 920px, we make the spacing a little wider, remove the gray background
+ * and make text a little bigger.
+ */
 @media screen and (max-width: 920px) {
   :root {
     --color-background: var(--color-page);

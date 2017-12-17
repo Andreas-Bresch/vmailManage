@@ -1,7 +1,7 @@
 .page {
-  margin:        var(--spacing-base) 0;
+  margin:        var(--spacing-base) 0 0;
   padding:       calc(var(--spacing-base) * 2);
-  border-radius: 3px;
+  border-radius: var(--border-radius-base);
   box-shadow:    0 1px 5px rgba(0, 0, 0, .1);
   background:    var(--color-page);
 }
@@ -14,6 +14,6 @@
   .page {
     border-radius: 0;
     box-shadow:    none;
-    padding: 0.5rem;
+    padding:       var(--spacing-small);
   }
 }

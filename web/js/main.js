@@ -22,7 +22,7 @@ function confirmItemDeletion(event) {
   event.preventDefault();
 
   const button = event.target,
-        label  = button.textContent;
+        label  = button.innerHTML;
 
   if (button.hasOwnProperty('deletionConfirmed') && button.deletionConfirmed) {
     window.location.href = button.getAttribute('href');
@@ -36,7 +36,7 @@ function confirmItemDeletion(event) {
 
   setTimeout(() => {
     button.classList.remove('active');
-    button.textContent       = label;
+    button.innerHTML       = label;
     button.deletionConfirmed = false;
   }, 3000);
 }

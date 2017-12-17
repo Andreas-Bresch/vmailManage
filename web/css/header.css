@@ -1,6 +1,8 @@
 .header {
   display:         flex;
   justify-content: space-between;
+  padding-top:     var(--spacing-small);
+  padding-bottom:  var(--spacing-small);
   background:      var(--color-primary-dark);
   color:           var(--color-primary-dark-contrast);
   user-select:     none;
@@ -9,6 +11,7 @@
 .header a {
   display:         block;
   padding:         var(--spacing-small);
+  border:          none;
   text-decoration: none;
   text-transform:  uppercase;
   font-weight:     400;

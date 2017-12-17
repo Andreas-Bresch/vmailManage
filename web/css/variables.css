@@ -8,6 +8,7 @@
   --color-primary-dark:          #263238;
   --color-primary-dark-contrast: #888;
   --color-text:                  #666;
+  --color-light-text:            #c0c0c0;
   --color-background:            #f0f0f0;
   --color-page:                  var(--color-white);
 
@@ -15,8 +16,9 @@
   --spacing-small:               calc(var(--spacing-base) / 2);
   --table-spacing:               1rem;
   --table-spacing-small:         calc(var(--table-spacing) / 2);
+  --border-radius-base:          3px;
 
   --font-size-base:              1rem;
   --font-size-big:               calc(var(--font-size-base) * 1.25);
-  --font-size-small:               calc(var(--font-size-base) * 0.75);
+  --font-size-small:             calc(var(--font-size-base) * 0.75);
 }

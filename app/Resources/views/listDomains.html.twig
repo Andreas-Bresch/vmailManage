@@ -1,4 +1,4 @@
-{% from 'macros/table.twig' import table, action, dangerousAction, primaryAction %}
+{% from 'macros/table.twig' import table, action, dangerousDeleteAction, primaryAddAction %}
 {{ include('base.html.twig') }}
 <article class="page page-list-domains">
   <header>
@@ -10,11 +10,11 @@
 
   {% for domain in domains %}
     {% set domainList = domainList | merge([ [
-    domain.domain,
-    dangerousAction('Delete', '/domain/delete/' ~ item.id, [ 'delete' ] )
+      domain.domain,
+      dangerousDeleteAction('Delete', '/domain/delete/' ~ item.id, [ 'delete' ] )
     ] ]) %}
   {% endfor %}
 
-  {{ table( [ 'Domain', 'Action' ], domainList, [ primaryAction( 'New Domain', '/domain/new' ) ] ) }}
+  {{ table( [ 'Domain', 'Action' ], domainList, [ primaryAddAction( 'New Domain', '/domain/new' ) ] ) }}
 </article>
 {{ include('base_bottom.html.twig') }}

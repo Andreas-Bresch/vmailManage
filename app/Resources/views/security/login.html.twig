@@ -4,21 +4,23 @@
     <h1>Login</h1>
     <h2>If you're unsure about your credentials, ask the postmaster</h2>
   </header>
-  {% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-  {% endif %}
-  <form action="{{ path('login') }}" method="post">
+  <form action="{{ path('login') }}" method="post" class="form">
     <div>
+      {% if error %}
+        <div class="error">
+          <span>Login failed: {{ error.messageKey|trans(error.messageData, 'security') }}</span>
+        </div>
+      {% endif %}
       <div>
         <label for="username">Username</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}">
+        <input type="text" id="username" name="_username" value="{{ last_username }}" required autofocus>
       </div>
       <div>
         <label for="password">Password</label>
-        <input type="password" id="password" name="_password">
+        <input type="password" id="password" name="_password" required>
       </div>
       <div>
-        <button type="submit">login</button>
+        <button type="submit">login<span class="material-icons">arrow_forward</span></button>
       </div>
     </div>
   </form>

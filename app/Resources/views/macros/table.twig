@@ -40,7 +40,14 @@
 
 {% macro action(label, link, classList) %}
   {% set _classList = classList | default( [] ) | merge( [ 'action' ] ) %}
-  <a class="{{ _classList | join( ' ' ) }}" href="{{ link }}">{{ label | default('') }}</a>
+  <a class="{{ _classList | join( ' ' ) }}" href="{{ link }}">{{ label | default('') | raw }}</a>
+{% endmacro %}
+
+{% macro editAction(label, link, classList) %}
+  {% from _self import action %}
+  {% set icon = '<span class="material-icons">mode_edit</span> ' %}
+  {% set _classList = classList | default( [] ) | merge( [ 'action' ] ) %}
+  {{ action(icon ~ label, link, _classList) }}
 {% endmacro %}
 
 {% macro primaryAction(label, link, classList) %}
@@ -49,8 +56,22 @@
   {{ action(label, link, _classList) }}
 {% endmacro %}
 
+{% macro primaryAddAction(label, link, classList) %}
+  {% from _self import action %}
+  {% set icon = '<span class="material-icons">add</span> ' %}
+  {% set _classList = classList | default( [] ) | merge( [ 'primary' ] ) %}
+  {{ action(icon ~ label, link, _classList) }}
+{% endmacro %}
+
 {% macro dangerousAction(label, link, classList) %}
   {% from _self import action %}
   {% set _classList = classList | default( [] ) | merge( [ 'danger' ] ) %}
   {{ action(label, link, _classList) }}
+{% endmacro %}
+
+{% macro dangerousDeleteAction(label, link, classList) %}
+  {% from _self import action %}
+  {% set icon = '<span class="material-icons">delete</span> ' %}
+  {% set _classList = classList | default( [] ) | merge( [ 'danger' ] ) %}
+  {{ action(icon ~ label, link, _classList) }}
 {% endmacro %}
