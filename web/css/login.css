@@ -1,0 +1,10 @@
+.page-login form > div {
+  margin: var(--spacing-base) 0;
+}
+
+.page-login form > div > div {
+  column-span: all;
+  align-items: center;
+  max-width:   50%;
+  margin:      0 auto;
+}

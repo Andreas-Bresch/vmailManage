@@ -1,22 +1,28 @@
-{# app/Resources/views/security/login.html.twig #}
-{# ... you will probably extend your base template, like base.html.twig #}
-
 {{ include('base.html.twig') }}
-
-<h1>Login</h1>
-
-{% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
-
-<form action="{{ path('login') }}" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" />
-
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="_password" />
-
-    <button type="submit">login</button>
-</form>
-
+<article class="page page-login">
+  <header>
+    <h1>Login</h1>
+    <h2>If you're unsure about your credentials, ask the postmaster</h2>
+  </header>
+  <form action="{{ path('login') }}" method="post" class="form">
+    <div>
+      {% if error %}
+        <div class="error">
+          <span>Login failed: {{ error.messageKey|trans(error.messageData, 'security') }}</span>
+        </div>
+      {% endif %}
+      <div>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="_username" value="{{ last_username }}" required autofocus>
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="_password" required>
+      </div>
+      <div>
+        <button type="submit">login<span class="material-icons">arrow_forward</span></button>
+      </div>
+    </div>
+  </form>
+</article>
 {{ include('base_bottom.html.twig') }}

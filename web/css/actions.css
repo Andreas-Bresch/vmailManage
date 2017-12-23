@@ -1,0 +1,42 @@
+a.action {
+  text-decoration: none;
+  display:         inline-block;
+  padding:         var(--spacing-small) var(--spacing-base);
+  border:          none;
+  border-radius:   var(--border-radius-base);
+  font-weight:     500;
+  text-transform:  uppercase;
+  transition:      all 0.125s;
+  user-select:     none;
+}
+
+a.action:hover {
+  background: rgba(0, 0, 0, .05);
+}
+
+a.action.danger {
+  color: var(--color-red);
+}
+
+a.action.danger.active {
+  background: var(--color-red);
+  color:      var(--color-white);
+}
+
+a.action.primary {
+  background-color: var(--color-primary);
+  color:            var(--color-primary-contrast);
+  box-shadow:       0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                    0 1px 5px 0 rgba(0, 0, 0, 0.12),
+                    0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+a.action.primary:hover {
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14),
+              0 1px 7px 0 rgba(0, 0, 0, 0.12),
+              0 3px 5px -1px rgba(0, 0, 0, 0.2);
+}
+
+.material-icons {
+  vertical-align: bottom;
+}

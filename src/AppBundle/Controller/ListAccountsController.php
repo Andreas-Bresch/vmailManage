@@ -8,23 +8,32 @@
 
 namespace AppBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use /** @noinspection PhpUnusedAliasInspection */
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\Account;
+use /** @noinspection PhpUnusedAliasInspection */
+    AppBundle\Entity\Account;
 
+/**
+ * ListAccountsController class
+ *
+ * @package AppBundle\Controller
+ */
 class ListAccountsController extends Controller
 {
 
     /**
      * @Route("/account/", name="list_accounts")
+     * @throws \LogicException
      */
-    public function indexAction(Request $request)
-    {
+    public function indexAction() {
         $accounts = $this->getDoctrine()
             ->getRepository('AppBundle:Account')
             ->findAll();
-        return $this->render('listAccounts.html.twig', array('accounts' => $accounts));
+
+        return $this->render( 'listAccounts.html.twig', [
+            'accounts' => $accounts,
+        ] );
     }
 
 }
