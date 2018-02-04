@@ -1,23 +1,44 @@
-{% from 'macros/table.twig' import table, editAction, dangerousDeleteAction, primaryAddAction %}
+{# app/Resources/views/listAliases.html.twig #}
 {{ include('base.html.twig') }}
-<article class="page page-list-aliases">
-  <header>
-    <h1>Aliases</h1>
-    <h2>Manage account aliases</h2>
-  </header>
 
-  {% set aliasList = [] %}
-  {% for alias in aliases %}
-    {% set aliasList = aliasList | merge( [ [
-      alias.source_username ~ '@' ~ alias.source_domain,
-      alias.destination_username ~ '@' ~ alias.destination_domain,
-      alias.enabled ? 'yes' : 'no',
-      editAction('Edit', '/alias/' ~ alias.id) ~ dangerousDeleteAction('Delete', '/alias/delete/' ~ alias.id, [ 'delete' ] )
-    ] ] ) %}
-  {% endfor %}
+<script src="{{ asset('js/main.js') }}"></script>
 
-  {{ table( [ 'Alias', 'Account', 'Enabled', 'Action' ], aliasList, [
-    primaryAddAction( 'New Alias', '/alias/new' )
-  ] ) }}
-</article>
+
+<h1>List aliases</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th colspan="3">Source</th>
+        <th colspan="3">Destination</th>
+        <th>Enabled</th>
+        <th>Action</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in aliases %}
+        <tr>
+            <td>{{ item.source_username }}</td>
+            <td>@</td>
+            <td>{{ item.source_domain }}</td>
+            <td>{{ item.destination_username }}</td>
+            <td>@</td>
+            <td>{{ item.destination_domain }}</td>
+            <td>{% if item.enabled %} yes {% else %} no {% endif %}</td>
+            <td>
+                <a href="{{ item.id }}">edit</a>
+                <a href="#" onclick="confirmAction('{{ item.source_username }}@{{ item.source_domain }}', 'delete/{{ item.id }}');">delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="7"></td>
+        <td><a href="new">+ new</a></td>
+    </tr>
+    </tfoot>
+</table>
+
 {{ include('base_bottom.html.twig') }}

@@ -1,14 +1,15 @@
 {# app/Resources/views/editAccount.html.twig #}
 {{ include('base.html.twig') }}
-<article class="page page-edit-alias">
-  <header>
-    <h1>Edit alias</h1>
-    <h2></h2>
-  </header>
-  {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
-  {{ form_start(form) }}
-  {{ form_widget(form) }}
-  {{ form_end(form) }}
-</article>
+<h1>Edit alias</h1>
+
+
+{{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
+
+
+
 {{ include('base_bottom.html.twig') }}

@@ -1,29 +1,45 @@
-{% from 'macros/table.twig' import table, editAction, dangerousDeleteAction, primaryAddAction %}
+{# app/Resources/views/listAccounts.html.twig #}
 {{ include('base.html.twig') }}
-<article class="page page-list-accounts">
-  <header>
-    <h1>Accounts</h1>
-    <h2>Manage mail accounts</h2>
-  </header>
-  {% set accountList = [] %}
-  {% for account in accounts %}
-    {% set accountList = accountList | merge( [ [
-      account.username,
-      account.domain,
-      account.quota ~ ' <span class="unit">MB</span>',
-      account.enabled ? 'yes' : 'no',
-      account.sendonly ? 'yes' : 'no',
-      editAction('Edit', '/account/' ~ account.id) ~ dangerousDeleteAction('Delete', '/account/delete/' ~ account.id, [ 'delete' ] )
-    ] ] ) %}
-  {% endfor %}
 
-  {{ table( [
-    'Username',
-    'Domain',
-    'Quota',
-    'Enabled',
-    'Send only',
-    'Action'
-  ], accountList, [ primaryAddAction( 'New Account', '/account/new') ] ) }}
-</article>
+<script src="{{ asset('js/main.js') }}"></script>
+
+<h1>List accounts</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Username</th>
+        <th>Domain</th>
+        <!--<th>Password</th>-->
+        <th>Quota</th>
+        <th>Enabled</th>
+        <th>Sendonly</th>
+        <th>Action</th>
+
+    </tr>
+    </thead>
+    <tbody>
+{% for item in accounts %}
+    <tr>
+        <td>{{ item.username }}</td>
+        <td>{{ item.domain }}</td>
+        <!--<td>{{ item.password }}</td>-->
+        <td>{{ item.quota }}</td>
+        <td>{% if item.enabled %} yes {% else %} no {% endif %}</td>
+        <td>{% if item.sendonly %} yes {% else %} no {% endif %}</td>
+        <td>
+            <a href="{{ item.id }}">edit</a>
+            <a href="#" onclick="confirmAction('{{ item.username }}', 'delete/{{ item.id }}');">delete</a>
+        </td>
+    </tr>
+{% endfor %}
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="5"></td>
+        <td><a href="new">+ new</a></td>
+    </tr>
+    </tfoot>
+</table>
+
 {{ include('base_bottom.html.twig') }}

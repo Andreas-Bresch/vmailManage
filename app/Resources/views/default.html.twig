@@ -1,22 +1,9 @@
 {{ include('base.html.twig') }}
-<div class=inner>
-  <article class="page page-index">
-    <header>
-      <h1>Welcome to vmailManage!</h1>
-    </header>
-    <section class="intro">
-      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <p>
-          vmailManage is a simple mail server administration panel. It allows you to create, update and delete all
-          available domains, mail accounts and aliases on your mail server.
-        </p>
-        <p>
-          To start right off, please choose one of the navigation links above.
-        </p>
-      {% else %}
-        <p>Please log in using the link in the upper right edge of the page.</p>
-      {% endif %}
-    </section>
-  </article>
-</div>
+
+<h1>vmailManage</h1>
+<p>This site helps you to manage your email server,<br>
+installed by this manual:
+<a href="https://thomas-leister.de/mailserver-unter-ubuntu-16.04/">https://thomas-leister.de/mailserver-unter-ubuntu-16.04/</a>
+    <br>(Dovecot, Postfix, MySQL)</p>
+
 {{ include('base_bottom.html.twig') }}
