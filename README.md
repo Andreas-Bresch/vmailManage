@@ -11,3 +11,9 @@ installed by this manual: https://thomas-leister.de/mailserver-unter-ubuntu-16.0
 For more information and an install how-to visit the wiki of 
 this 
 project https://github.com/Andreas-Bresch/vmailManage/wiki
+
+**I started the work for a new version. It will be released in november 2018**
+
+Features:
+* Backend/API: Zend Framework 3, Apigility, multi-admin per domain, user password change, wildcard addresses
+* Frontend: Single Page App, Vue, Bootsrap 4
